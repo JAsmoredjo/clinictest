@@ -21,22 +21,17 @@ public class Visit {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @ManyToOne
-    @JoinColumn(name = "service_fk")
-    private Service service;
-
-    @Column(name = "comment", nullable = false)
-    private String comment;
+    @Column(name = "anamnesis", nullable = false)
+    private String anamnesis;
 
     public Visit() {
     }
 
-    public Visit(int id, Patient patient, LocalDate date, Service service, String comment) {
+    public Visit(int id, Patient patient, LocalDate date, String anamnesis) {
         this.id = id;
         this.patient = patient;
         this.date = date;
-        this.service = service;
-        this.comment = comment;
+        this.anamnesis = anamnesis;
     }
 
     public int getId() {
@@ -63,19 +58,12 @@ public class Visit {
         this.date = date;
     }
 
-    public Service getService() {
-        return service;
+
+    public String getAnamnesis() {
+        return anamnesis;
     }
 
-    public void setService(Service service) {
-        this.service = service;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setAnamnesis(String anamnesis) {
+        this.anamnesis = anamnesis;
     }
 }

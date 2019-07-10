@@ -14,12 +14,12 @@ public class Queue {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "ticket", nullable = false)
-    private int ticket;
-
     @ManyToOne
     @JoinColumn(name = "patient_fk", nullable = false)
     private Patient patient;
+
+    @Column(name = "priority", nullable = false)
+    private Boolean priority;
 
     @Column(name = "status", nullable = false)
     private String status;
@@ -27,11 +27,11 @@ public class Queue {
     public Queue() {
     }
 
-    public Queue(int id, LocalDate date, int ticket, Patient patient, String status) {
+    public Queue(int id, LocalDate date, Patient patient, Boolean priority, String status) {
         this.id = id;
         this.date = date;
-        this.ticket = ticket;
         this.patient = patient;
+        this.priority = priority;
         this.status = status;
     }
 
@@ -51,20 +51,20 @@ public class Queue {
         this.date = date;
     }
 
-    public int getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(int ticket) {
-        this.ticket = ticket;
-    }
-
     public Patient getPatient() {
         return patient;
     }
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public Boolean getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Boolean priority) {
+        this.priority = priority;
     }
 
     public String getStatus() {

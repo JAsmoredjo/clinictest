@@ -7,19 +7,25 @@ public class StaffDTO {
 
     private String firstName;
 
-    private String job;
+    private String dateOfBirth;
 
-    private String status;
+    private String address;
+
+    private int phoneNumber;
+
+    private String job;
 
     public StaffDTO() {
     }
 
-    public StaffDTO(int id, String lastName, String firstName, String job, String status) {
+    public StaffDTO(int id, String lastName, String firstName, String dateOfBirth, String address, int phoneNumber, String job) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
         this.job = job;
-        this.status = status;
     }
 
     public int getId() {
@@ -46,19 +52,35 @@ public class StaffDTO {
         this.firstName = firstName;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getJob() {
         return job;
     }
 
     public void setJob(String job) {
         this.job = job;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

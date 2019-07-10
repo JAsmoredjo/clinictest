@@ -2,6 +2,7 @@ package sr.unasat.clinictest.service;
 
 import sr.unasat.clinictest.config.JPAConfiguration;
 import sr.unasat.clinictest.dao.PatientDAO;
+import sr.unasat.clinictest.entity.InsuranceCompany;
 import sr.unasat.clinictest.entity.Patient;
 
 import java.util.List;
@@ -19,15 +20,23 @@ public class PatientService {
         return patientDAO.all();
     }
 
-    public List<Patient> info(Patient patient) {
-        return patientDAO.info(patient);
-    }
-
     public Patient search(Patient patient) {
         return patientDAO.search(patient);
     }
 
     public Patient register(Patient patient) {
         return patientDAO.register(patient);
+    }
+
+    public Patient visit(Patient patient) {
+        return patientDAO.visit(patient);
+    }
+
+    public Patient update(Patient patient) {
+        return patientDAO.update(patient);
+    }
+
+    public List<Patient> report(InsuranceCompany insuranceCompany) {
+        return patientDAO.report(insuranceCompany);
     }
 }

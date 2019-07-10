@@ -29,21 +29,14 @@ public class QueueController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Queue queue(Queue queue) {
+    public List<Queue> queue(Queue queue) {
         return queueService.queue(queue);
     }
 
     @Path("/update")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Queue> update(List<Queue> queues) {
-        return queueService.update(queues);
-    }
-
-    @Path("/call")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Queue> call() {
-        return queueService.call();
+    public List<Queue> update(Queue queue) {
+        return queueService.update(queue);
     }
 }

@@ -1,7 +1,6 @@
 package sr.unasat.clinictest.dto;
 
 import sr.unasat.clinictest.entity.Insurance;
-import sr.unasat.clinictest.entity.Staff;
 import sr.unasat.clinictest.entity.Visit;
 
 import java.util.ArrayList;
@@ -14,24 +13,30 @@ public class PatientDTO {
 
     private String firstName;
 
+    private String dateOfBirth;
+
+    private String address;
+
+    private int phoneNumber;
+
     private Insurance insurance;
 
     private String insuranceNumber;
-
-    private Staff doctor;
 
     private List<Visit> visits = new ArrayList<>();
 
     public PatientDTO() {
     }
 
-    public PatientDTO(int id, String lastName, String firstName, Insurance insurance, String insuranceNumber, Staff doctor, List<Visit> visits) {
+    public PatientDTO(int id, String lastName, String firstName, String dateOfBirth, String address, int phoneNumber, Insurance insurance, String insuranceNumber, List<Visit> visits) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
         this.insurance = insurance;
         this.insuranceNumber = insuranceNumber;
-        this.doctor = doctor;
         this.visits = visits;
     }
 
@@ -59,6 +64,30 @@ public class PatientDTO {
         this.firstName = firstName;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public Insurance getInsurance() {
         return insurance;
     }
@@ -73,14 +102,6 @@ public class PatientDTO {
 
     public void setInsuranceNumber(String insuranceNumber) {
         this.insuranceNumber = insuranceNumber;
-    }
-
-    public Staff getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Staff doctor) {
-        this.doctor = doctor;
     }
 
     public List<Visit> getVisits() {

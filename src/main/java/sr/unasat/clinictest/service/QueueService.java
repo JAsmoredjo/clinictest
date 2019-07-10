@@ -23,15 +23,11 @@ public class QueueService {
         return queueDAO.today();
     }
 
-    public Queue queue(Queue queue) {
+    public List<Queue> queue(Queue queue) {
         return queueDAO.queue(queue);
     }
 
-    public List<Queue> update(List<Queue> queues) {
-        return queueDAO.update(queues);
-    }
-
-    public List<Queue> call() {
-        return queueDAO.call();
+    public List<Queue> update(Queue queue) {
+        return queueDAO.update(queue);
     }
 }

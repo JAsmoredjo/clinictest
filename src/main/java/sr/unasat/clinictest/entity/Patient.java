@@ -18,6 +18,15 @@ public class Patient {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @Column(name = "date_of_birth", nullable = false)
+    private String dateOfBirth;
+
+    @Column(name = "address", nullable = false)
+    private String address;
+
+    @Column(name = "phone_number", nullable = false)
+    private int phoneNumber;
+
     @ManyToOne
     @JoinColumn(name = "insurance_fk", nullable = false)
     private Insurance insurance;
@@ -25,23 +34,21 @@ public class Patient {
     @Column(name = "insurance_number", nullable = false, unique = true)
     private String insuranceNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "staff_fk", nullable = false)
-    private Staff doctor;
-
     @OneToMany(mappedBy = "patient")
     private List<Visit> visits = new ArrayList<>();
 
     public Patient() {
     }
 
-    public Patient(int id, String lastName, String firstName, Insurance insurance, String insuranceNumber, Staff doctor, List<Visit> visits) {
+    public Patient(int id, String lastName, String firstName, String dateOfBirth, String address, int phoneNumber, Insurance insurance, String insuranceNumber, List<Visit> visits) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
         this.insurance = insurance;
         this.insuranceNumber = insuranceNumber;
-        this.doctor = doctor;
         this.visits = visits;
     }
 
@@ -73,6 +80,30 @@ public class Patient {
         return insurance;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public void setInsurance(Insurance insurance) {
         this.insurance = insurance;
     }
@@ -83,14 +114,6 @@ public class Patient {
 
     public void setInsuranceNumber(String insuranceNumber) {
         this.insuranceNumber = insuranceNumber;
-    }
-
-    public Staff getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Staff doctor) {
-        this.doctor = doctor;
     }
 
     public List<Visit> getVisits() {

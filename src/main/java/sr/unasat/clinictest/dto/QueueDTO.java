@@ -11,15 +11,18 @@ public class QueueDTO {
 
     private Patient patient;
 
+    private Boolean priority;
+
     private String status;
 
     public QueueDTO() {
     }
 
-    public QueueDTO(int id, LocalDate date, Patient patient, String status) {
+    public QueueDTO(int id, LocalDate date, Patient patient, Boolean priority, String status) {
         this.id = id;
         this.date = date;
         this.patient = patient;
+        this.priority = priority;
         this.status = status;
     }
 
@@ -45,6 +48,14 @@ public class QueueDTO {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public Boolean getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Boolean priority) {
+        this.priority = priority;
     }
 
     public String getStatus() {

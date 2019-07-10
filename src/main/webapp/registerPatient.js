@@ -5,7 +5,7 @@ getInsurance();
 
 function getInsurance() {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "/clinic-test/api/insurance/all", true);
+    xmlhttp.open("GET", "/test/api/insurance/all", true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             insuranceJSON = JSON.parse(xmlhttp.responseText);
@@ -14,26 +14,6 @@ function getInsurance() {
                 insuranceOption += "<option value=\"" + insurance.insuranceCompany.name + " - " + insurance.name + "\">" + insurance.insuranceCompany.name + " - " + insurance.name + "</option>";
             }
             document.getElementById("insurance").innerHTML = insuranceOption;
-            getDoctor();
-        }
-    };
-    xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send();
-}
-
-function getDoctor() {
-    let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "/clinic-test/api/staff/all", true);
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            doctorJSON = JSON.parse(xmlhttp.responseText);
-            let doctorOption = "";
-            for (let doctor of doctorJSON) {
-                if (doctor.job == "Doctor") {
-                    doctorOption += "<option value=\"Dr. " + doctor.lastName + ", " + doctor.firstName + "\">Dr. " + doctor.lastName + ", " + doctor.firstName + "</option>";
-                }
-            }
-            document.getElementById("doctor").innerHTML = doctorOption;
         }
     };
     xmlhttp.setRequestHeader("Content-Type", "application/json");
@@ -43,15 +23,22 @@ function getDoctor() {
 function registerPatient() {
     let lastName = document.getElementById("lastName").value;
     let firstName = document.getElementById("firstName").value;
+    let dateOfBirth = document.getElementById("dateOfBirth").value;
+    dateOfBirth = dateOfBirth.split("-")
+    if (dateOfBirth.length == 3) {
+        dateOfBirth = dateOfBirth[2] + "-" + dateOfBirth[1] + "-" + dateOfBirth[0]
+    } else {
+        dateOfBirth = ""
+    }
+    let address = document.getElementById("address").value;
+    let phoneNumber = document.getElementById("phoneNumber").value;
     let insuranceIndex = document.getElementById("insurance").selectedIndex;
     let insurance = insuranceJSON[insuranceIndex];
     let insuranceNumber = document.getElementById("insuranceNumber").value;
-    let doctorIndex = document.getElementById("doctor").selectedIndex;
-    let doctor = doctorJSON[doctorIndex];
-    if (lastName != null && lastName != "" && firstName != null && firstName != "" && insurance != null && insurance != "" && insuranceNumber != null && insuranceNumber != "" && doctor != null && doctor != "") {
-        let patient = {"lastName" : lastName, "firstName" : firstName, "insurance" : insurance, "insuranceNumber" : insuranceNumber, "doctor" : doctor};
+    if (lastName != null && lastName != "" && firstName != null && firstName != "" && dateOfBirth != null && dateOfBirth != "" && address != null && address != "" && phoneNumber != null && phoneNumber != "" && insurance != null && insurance != "" && insuranceNumber != null && insuranceNumber != "") {
+        let patient = {"lastName" : lastName, "firstName" : firstName, "dateOfBirth" : dateOfBirth, "address" : address, "phoneNumber" : phoneNumber, "insurance" : insurance, "insuranceNumber" : insuranceNumber};
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/clinic-test/api/patient/register", true);
+        xmlhttp.open("POST", "/test/api/patient/register", true);
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 let patientJSON = JSON.parse(xmlhttp.responseText);
@@ -62,11 +49,12 @@ function registerPatient() {
                 } else {
                     document.getElementById("lastName").value = "";
                     document.getElementById("firstName").value = "";
+                    document.getElementById("dateOfBirth").value = "";
+                    document.getElementById("address").value = "";
+                    document.getElementById("phoneNumber").value = "";
                     insurance = document.getElementById("insurance");
                     insurance.value = insurance.options[0].value;
                     document.getElementById("insuranceNumber").value = "";
-                    doctor = document.getElementById("doctor");
-                    doctor.value = doctor.options[0].value;
                     alert("Registration successful");
                 }
             }

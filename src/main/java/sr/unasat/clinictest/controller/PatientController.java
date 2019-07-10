@@ -18,14 +18,6 @@ public class PatientController {
         return patientService.all();
     }
 
-    @Path("/info")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Patient> info(Patient patient) {
-        return patientService.info(patient);
-    }
-
     @Path("/search")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -40,5 +32,21 @@ public class PatientController {
     @Produces(MediaType.APPLICATION_JSON)
     public Patient register(Patient patient) {
         return patientService.register(patient);
+    }
+
+    @Path("/visit")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Patient visit(Patient patient) {
+        return patientService.visit(patient);
+    }
+
+    @Path("/update")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Patient update(Patient patient) {
+        return patientService.update(patient);
     }
 }

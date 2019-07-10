@@ -4,14 +4,16 @@ function login() {
     if (username != null && username != "" && password != null && password != "") {
         let user = {"username" : username, "password" : password};
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/clinic-test/api/user/login", true);
+        xmlhttp.open("POST", "/test/api/user/login", true);
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 let userJSON = JSON.parse(xmlhttp.responseText);
                 if (userJSON.username == username && userJSON.password == password) {
+                    document.getElementById("username").value = "";
+                    document.getElementById("password").value = "";
                     document.getElementById("loginError").innerHTML = "<br>";
                     if (userJSON.staff.job == "Doctor") {
-                        window.location.href = "main-menu.html";
+                        window.location.href = "waiting-list.html";
                     } else {
                         window.location.href = "waiting-list.html";
                     }

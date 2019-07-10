@@ -1,7 +1,6 @@
 package sr.unasat.clinictest.dto;
 
 import sr.unasat.clinictest.entity.Patient;
-import sr.unasat.clinictest.entity.Service;
 
 import java.time.LocalDate;
 
@@ -12,19 +11,16 @@ public class VisitDTO {
 
     private LocalDate date;
 
-    private Service service;
-
-    private String comment;
+    private String anamnesis;
 
     public VisitDTO() {
     }
 
-    public VisitDTO(int id, Patient patient, LocalDate date, Service service, String comment) {
+    public VisitDTO(int id, Patient patient, LocalDate date, String anamnesis) {
         this.id = id;
         this.patient = patient;
         this.date = date;
-        this.service = service;
-        this.comment = comment;
+        this.anamnesis = anamnesis;
     }
 
     public int getId() {
@@ -51,19 +47,11 @@ public class VisitDTO {
         this.date = date;
     }
 
-    public Service getService() {
-        return service;
+    public String getAnamnesis() {
+        return anamnesis;
     }
 
-    public void setService(Service service) {
-        this.service = service;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setAnamnesis(String anamnesis) {
+        this.anamnesis = anamnesis;
     }
 }
