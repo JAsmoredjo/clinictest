@@ -3,7 +3,7 @@ function searchPatient() {
     if (insuranceNumber != null && insuranceNumber != "") {
         let patient = {"insuranceNumber" : insuranceNumber};
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/test/api/patient/search", true);
+        xmlhttp.open("POST", "/clinic-test/api/patient/search", true);
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 patientJSON = JSON.parse(xmlhttp.responseText);
@@ -33,7 +33,7 @@ function addAnamnesis(insuranceNumber) {
     if (anamnesis != null && anamnesis != "") {
         let patient = {"insuranceNumber" : insuranceNumber, "visits" : [{"anamnesis" : anamnesis}]};
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/test/api/patient/visit", true);
+        xmlhttp.open("POST", "/clinic-test/api/patient/visit", true);
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 patientJSON = JSON.parse(xmlhttp.responseText);

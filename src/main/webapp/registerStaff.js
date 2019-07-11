@@ -23,7 +23,7 @@ function registerUser() {
         if (password == retypePassword) {
             let user = {"username" : username, "password" : password, "staff" : {"lastName" : lastName, "firstName" : firstName, "dateOfBirth" : dateOfBirth, "address" : address, "phoneNumber" : phoneNumber, "job" : job}};
             let xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "/test/api/user/register", true);
+            xmlhttp.open("POST", "/clinic-test/api/user/register", true);
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     let userJSON = JSON.parse(xmlhttp.responseText);

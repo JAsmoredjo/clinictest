@@ -5,7 +5,7 @@ getInsurance();
 
 function getInsurance() {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "/test/api/insurance/all", true);
+    xmlhttp.open("GET", "/clinic-test/api/insurance/all", true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             insuranceJSON = JSON.parse(xmlhttp.responseText);
@@ -38,7 +38,7 @@ function registerPatient() {
     if (lastName != null && lastName != "" && firstName != null && firstName != "" && dateOfBirth != null && dateOfBirth != "" && address != null && address != "" && phoneNumber != null && phoneNumber != "" && insurance != null && insurance != "" && insuranceNumber != null && insuranceNumber != "") {
         let patient = {"lastName" : lastName, "firstName" : firstName, "dateOfBirth" : dateOfBirth, "address" : address, "phoneNumber" : phoneNumber, "insurance" : insurance, "insuranceNumber" : insuranceNumber};
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/test/api/patient/register", true);
+        xmlhttp.open("POST", "/clinic-test/api/patient/register", true);
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 let patientJSON = JSON.parse(xmlhttp.responseText);

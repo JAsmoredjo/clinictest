@@ -2,7 +2,7 @@ callList()
 
 function callList() {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "/test/api/queue/today", true);
+    xmlhttp.open("POST", "/clinic-test/api/queue/today", true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             queueJSON = JSON.parse(xmlhttp.responseText);

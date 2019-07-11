@@ -4,7 +4,7 @@ function login() {
     if (username != null && username != "" && password != null && password != "") {
         let user = {"username" : username, "password" : password};
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/test/api/user/login", true);
+        xmlhttp.open("POST", "/clinic-test/api/user/login", true);
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 let userJSON = JSON.parse(xmlhttp.responseText);

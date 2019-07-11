@@ -5,7 +5,7 @@ getList();
 
 function getList() {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "/test/api/queue/today", true);
+    xmlhttp.open("POST", "/clinic-test/api/queue/today", true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             queueJson = JSON.parse(xmlhttp.responseText);
@@ -40,7 +40,7 @@ function queuePatient() {
     if (insuranceNumber != null && insuranceNumber != "") {
         let queue = {"patient" : {"insuranceNumber" : insuranceNumber}};
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/test/api/queue/queue", true);
+        xmlhttp.open("POST", "/clinic-test/api/queue/queue", true);
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 queueJson = JSON.parse(xmlhttp.responseText);
@@ -88,7 +88,7 @@ function info(insuranceNumber) {
 function updatePriority(id, priority) {
     let queue = {"id" : id, "priority" : priority};
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "/test/api/queue/update", true);
+    xmlhttp.open("POST", "/clinic-test/api/queue/update", true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             queueJson = JSON.parse(xmlhttp.responseText);
@@ -120,7 +120,7 @@ function updatePriority(id, priority) {
 function updateStatus(id, status) {
     let queue = {"id" : id, "status" : status};
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "/test/api/queue/update", true);
+    xmlhttp.open("POST", "/clinic-test/api/queue/update", true);
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             queueJson = JSON.parse(xmlhttp.responseText);
