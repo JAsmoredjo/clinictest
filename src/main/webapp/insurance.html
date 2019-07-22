@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="insurance.css">
+    <title>Clinic Test</title>
+</head>
+<body>
+<div class="hero-image">
+    <div class="topnav" id="myTopnav">
+        <a href="#" class="active">Insurance</a>
+        <a href="#" onclick="openWaitingList()">Waiting List</a>
+        <a href="#" onclick="openPatient()">Patient</a>
+        <a href="#" onclick="openReport()">Report</a>
+        <a href="#" onclick="openStaff()">Staff</a>
+        <a href="#" onclick="openBackup()">Backup</a>
+        <a href="#" class="logout" onclick="logout()">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            ≡
+        </a>
+    </div>
+    <div class="container">
+        <label for="searchInsurance"><b>Insurance Company Name or Insurance Name</b></label>
+        <input id="searchInsurance" type="text" placeholder="Enter Insurance Company Name or Insurance Name">
+        <label id="searchError" style="color: #c63939;">&nbsp;</label>
+        <div class="clearfix">
+            <button type="button" onclick="searchInsurance()" class="confirmbtn">Search</button>
+            <button type="button" onclick="document.getElementById('id01').style.display='block'" class="nwebtn">New</button>
+        </div>
+    </div>
+    <div id="info">
+        <table>
+            <tr>
+                <th>Company</th>
+                <th>Type</th>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    <div id="id01" class="modal">
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="logo.png" alt="Logo" class="logo">
+            </div>
+            <div class="container">
+                <label for="newInsuranceCompany"><b>Insurance Company</b></label>
+                <select id="newInsuranceCompany" onchange="updateDisplay()"></select>
+                <label id="newInsuranceCompanyNameLabel" for="newInsuranceCompanyName"><b>Insurance Company Name</b></label>
+                <input id="newInsuranceCompanyName" type="text" placeholder="Enter Insurance Company Name">
+                <label for="newInsuranceName"><b>Insurance Name</b></label>
+                <input id="newInsuranceName" type="text" placeholder="Enter Insurance Name">
+                <label id="newError" style="color: #c63939;">&nbsp;</label>
+                <div class="clearfix">
+                    <button type="button" onclick="registerInsurance()" class="confirmbtn">Add</button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="insurance.js"></script>
+</body>
+</html>

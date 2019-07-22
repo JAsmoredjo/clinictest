@@ -6,15 +6,16 @@ function callList() {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             queueJSON = JSON.parse(xmlhttp.responseText);
-            let call = "";
-            for (let queue of queueJSON) {
-                if (queueJSON.indexOf(queue) == 0) {
-                    call += queue.patient.lastName + ", " + queue.patient.firstName[0] + "<br><br>";
-                } else {
-                    call += queue.patient.lastName + ", " + queue.patient.firstName[0] + "<br>";
+            if (queueJSON.length > 0) {
+                for (let queue of queueJSON) {
+                    if (queue.status == "Waiting") {
+                        document.getElementById("call").innerHTML = "Up Next<br>" + queue.patient.lastName + ", " + queue.patient.firstName[0] + "<br><br>";
+                        break;
+                    }
                 }
+            } else {
+                document.getElementById("call").innerHTML = "Clinic Test";
             }
-            document.getElementById("call").innerHTML = call;
         }
     };
     xmlhttp.setRequestHeader("Content-Type", "application/json");

@@ -13,9 +13,9 @@ import java.util.zip.ZipOutputStream;
 public class Zip {
     private static final String PATH = "C:\\Report\\";
 
-    public void createVisitZip() {
+    public void createReportZip() {
         try{
-            FileOutputStream fos = new FileOutputStream(PATH + "Visit.zip");
+            FileOutputStream fos = new FileOutputStream(PATH + "Report.zip");
             ZipOutputStream zos = new ZipOutputStream(fos);
             InsuranceCompanyService insuranceCompanyService = new InsuranceCompanyService();
             List<InsuranceCompany> insuranceCompanies = insuranceCompanyService.all();

@@ -1,0 +1,138 @@
+body, html {
+    background-color: #070713;
+    height: 100%;
+    margin: 0;
+}
+
+.hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.hero-text button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 15px;
+    color: black;
+    background-color: #39a5c6;
+    text-align: center;
+    cursor: pointer;
+}
+
+.hero-text button:hover {
+    background-color: #9cd2e2;
+    color: black;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0px;
+    display: inline-block;
+    border: none;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #39a5c6;
+    color: black;
+    padding: 15px;
+    margin: 10px 0px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #9cd2e2;
+}
+
+.cancelbtn {
+    background-color: #c63939;
+}
+
+.cancelbtn {
+  float: left;
+}
+
+.confirmbtn {
+  float: right;
+}
+
+.cancelbtn:hover {
+    background-color: #e29c9c;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 15px 0px;
+    position: relative;
+}
+
+img.logo {
+    width: 100px;
+}
+
+.container {
+    padding: 15px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 50px;
+}
+
+.modal-content {
+    background-color: #070713;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #9cd2e2;
+    width: 50%; /* Could be more or less, depending on screen size */
+    color: white;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #c63939;
+    cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 600px) {
+    .cancelbtn, .confirmbtn {
+        width: 100%;
+    }
+}

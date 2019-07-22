@@ -76,10 +76,6 @@ public class Patient {
         this.firstName = firstName;
     }
 
-    public Insurance getInsurance() {
-        return insurance;
-    }
-
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -102,6 +98,10 @@ public class Patient {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Insurance getInsurance() {
+        return insurance;
     }
 
     public void setInsurance(Insurance insurance) {

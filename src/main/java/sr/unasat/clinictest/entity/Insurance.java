@@ -14,7 +14,7 @@ public class Insurance {
     @JoinColumn(name = "insurance_company_fk", nullable = false)
     private InsuranceCompany insuranceCompany;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     public Insurance() {

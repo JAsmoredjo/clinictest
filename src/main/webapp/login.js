@@ -1,3 +1,11 @@
+var modal = document.getElementById('id01');
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 function login() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -11,20 +19,20 @@ function login() {
                 if (userJSON.username == username && userJSON.password == password) {
                     document.getElementById("username").value = "";
                     document.getElementById("password").value = "";
-                    document.getElementById("loginError").innerHTML = "<br>";
+                    document.getElementById("error").value = "&nbsp;";
                     if (userJSON.staff.job == "Doctor") {
                         window.location.href = "waiting-list.html";
                     } else {
                         window.location.href = "waiting-list.html";
                     }
                 } else {
-                    document.getElementById("loginError").innerHTML = "Invalid Username/Password";
+                    document.getElementById("error").innerHTML = "Invalid Username or Password";
                 }
             }
         };
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify(user));
     } else {
-        document.getElementById("loginError").innerHTML = "Please enter your username and password";
+        document.getElementById("error").innerHTML = "Please Enter Username and Password";
     }
 }

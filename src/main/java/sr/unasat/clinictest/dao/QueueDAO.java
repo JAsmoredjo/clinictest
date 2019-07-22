@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class QueueDAO {
@@ -27,7 +28,7 @@ public class QueueDAO {
 
     public List<Queue> today() {
         entityManager.getTransaction().begin();
-        String jpql = "select q from Queue q where q.date = :date and q.status != 'Finished' and q.status != 'Canceled'";
+        String jpql = "select q from Queue q where q.date = :date order by q.status desc, q.priority desc";
         TypedQuery<Queue> queueTypedQuery = entityManager.createQuery(jpql, Queue.class);
         queueTypedQuery.setParameter("date", LocalDate.now());
         List<Queue> queues = queueTypedQuery.getResultList();
@@ -37,9 +38,9 @@ public class QueueDAO {
 
     public List<Queue> queue(Queue queue) {
         entityManager.getTransaction().begin();
-        String jpql = "select p from Patient p where p.insuranceNumber = :insuranceNumber";
+        String jpql = "select p from Patient p where upper(p.insuranceNumber) = :insuranceNumber";
         TypedQuery<Patient> patientTypedQuery = entityManager.createQuery(jpql, Patient.class);
-        patientTypedQuery.setParameter("insuranceNumber", queue.getPatient().getInsuranceNumber());
+        patientTypedQuery.setParameter("insuranceNumber", queue.getPatient().getInsuranceNumber().toUpperCase());
         try {
             Patient patient = patientTypedQuery.getSingleResult();
             queue.setDate(LocalDate.now());
@@ -56,24 +57,37 @@ public class QueueDAO {
     }
 
     public List<Queue> update(Queue queue) {
-        entityManager.getTransaction().begin();
-        String jpql = "select q from Queue q where q.id = :id";
-        TypedQuery<Queue> queueTypedQuery = entityManager.createQuery(jpql, Queue.class);
-        queueTypedQuery.setParameter("id", queue.getId());
-        try {
-            Queue queueTemp = queueTypedQuery.getSingleResult();
-            if (queue.getPriority() != null) {
-                queueTemp.setPriority(queue.getPriority());
+        if (queue.getPriority() != null) {
+            entityManager.getTransaction().begin();
+            String jpql = "select q from Queue q where q.date = :date";
+            TypedQuery<Queue> queueTypedQuery = entityManager.createQuery(jpql, Queue.class);
+            queueTypedQuery.setParameter("date", LocalDate.now());
+            List<Queue> queues = queueTypedQuery.getResultList();
+            for (Queue queueTemp : queues) {
+                if (queue.getPriority() && queueTemp.getId() == queue.getId()) {
+                    queueTemp.setPriority(true);
+                } else {
+                    queueTemp.setPriority(false);
+                }
+                entityManager.merge(queueTemp);
             }
-            if (queue.getStatus() != null) {
+            entityManager.getTransaction().commit();
+            return today();
+        } else {
+            entityManager.getTransaction().begin();
+            String jpql = "select q from Queue q where q.id = :id";
+            TypedQuery<Queue> queueTypedQuery = entityManager.createQuery(jpql, Queue.class);
+            queueTypedQuery.setParameter("id", queue.getId());
+            try {
+                Queue queueTemp = queueTypedQuery.getSingleResult();
                 queueTemp.setStatus(queue.getStatus());
+                entityManager.merge(queueTemp);
+                entityManager.getTransaction().commit();
+                return today();
+            } catch (NoResultException e) {
+                entityManager.getTransaction().commit();
+                return today();
             }
-            entityManager.merge(queueTemp);
-            entityManager.getTransaction().commit();
-            return today();
-        } catch (NoResultException e) {
-            entityManager.getTransaction().commit();
-            return today();
         }
     }
 }

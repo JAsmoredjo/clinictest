@@ -59,26 +59,33 @@ public class UserDAO {
             user.setUsername(null);
             return user;
         } catch (NoResultException noUser) {
-            jpql = "select s from Staff s where s.firstName = :firstName and s.lastName = :lastName";
-            TypedQuery<Staff> staffTypedQuery = entityManager.createQuery(jpql, Staff.class);
-            staffTypedQuery.setParameter("firstName", user.getStaff().getFirstName());
-            staffTypedQuery.setParameter("lastName", user.getStaff().getLastName());
-            try {
-                Staff staff = staffTypedQuery.getSingleResult();
-                entityManager.getTransaction().commit();
-                user.setStaff(null);
-                return user;
-            } catch (NoResultException noStaff) {
-                PBKDF2 pbkdf2 = new PBKDF2();
-                String hash = pbkdf2.hash(user.getPassword());
-                String[] hashSplit = hash.split(":");
-                user.setPassword(hashSplit[0]);
-                user.setSalt(hashSplit[1]);
-                entityManager.persist(user.getStaff());
-                entityManager.persist(user);
-                entityManager.getTransaction().commit();
-                return user;
-            }
+            PBKDF2 pbkdf2 = new PBKDF2();
+            String hash = pbkdf2.hash(user.getPassword());
+            String[] hashSplit = hash.split(":");
+            user.setPassword(hashSplit[0]);
+            user.setSalt(hashSplit[1]);
+            entityManager.persist(user.getStaff());
+            entityManager.persist(user);
+            entityManager.getTransaction().commit();
+            return user;
         }
+    }
+
+    public User remove(User user) {
+        entityManager.getTransaction().begin();
+        String jpql = "select u from User u where u.staff.id = :id";
+        TypedQuery<User> userTypedQuery = entityManager.createQuery(jpql, User.class);
+        userTypedQuery.setParameter("id", user.getStaff().getId());
+        try {
+            User userTemp = userTypedQuery.getSingleResult();
+            entityManager.remove(userTemp);
+            entityManager.remove(userTemp.getStaff());
+            entityManager.getTransaction().commit();
+            return new User();
+        } catch (NoResultException e) {
+            entityManager.getTransaction().commit();
+            return user;
+        }
+
     }
 }

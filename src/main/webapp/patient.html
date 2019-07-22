@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" type="text/css" href="patient.css">
+            <title>Clinic Test</title>
+        </head>
+    <body>
+        <div class="hero-image">
+            <div class="topnav" id="myTopnav">
+                <a href="#" class="active">Patient</a>
+                <a href="#" onclick="openWaitingList()">Waiting List</a>
+                <a href="#" onclick="openReport()">Report</a>
+                <a href="#" onclick="openInsurance()">Insurance</a>
+                <a href="#" onclick="openStaff()">Staff</a>
+                <a href="#" onclick="openBackup()">Backup</a>
+                <a href="#" class="logout" onclick="logout()">Logout</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    ≡
+                </a>
+            </div>
+            <div class="container">
+                <label for="insuranceNumber"><b>Insurance Number</b></label>
+                <input id="insuranceNumber" type="text" placeholder="Enter Insurance Number">
+                <label id="searchError" style="color: #c63939;">&nbsp;</label>
+                <div class="clearfix">
+                    <button type="button" onclick="searchPatient()" class="confirmbtn">Search</button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='block'" class="newbtn">New</button>
+                </div>
+            </div>
+            <div id="info">
+                <table>
+                    <tr>
+                        <th colspan="2">Patient</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Insurance</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="visitTable">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Anamnesis</th>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="id01" class="modal">
+                <div class="modal-content animate">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <img src="logo.png" alt="Logo" class="logo">
+                    </div>
+                    <div class="container">
+                        <label for="newLastName"><b>Last Name</b></label>
+                        <input id="newLastName" type="text" placeholder="Enter Last Name">
+                        <label for="newFirstName"><b>First Name</b></label>
+                        <input id="newFirstName" type="text" placeholder="Enter First Name">
+                        <label for="newDateOfBirth"><b>Date of Birth</b></label>
+                        <input id="newDateOfBirth" type="date" placeholder="Enter Date of Birth">
+                        <label for="newAddress"><b>Address</b></label>
+                        <input id="newAddress" type="text" placeholder="Enter Address">
+                        <label for="newPhoneNumber"><b>Phone Number</b></label>
+                        <input id="newPhoneNumber" type="number" placeholder="Enter Phone Number">
+                        <label for="newInsurance"><b>Insurance</b></label>
+                        <select id="newInsurance" ></select>
+                        <label for="newInsuranceNumber"><b>Insurance Number</b></label>
+                        <input id="newInsuranceNumber" type="text" placeholder="Enter Insurance Number">
+                        <label id="newError" style="color: #c63939;">&nbsp;</label>
+                        <div class="clearfix">
+                            <button type="button" onclick="newPatient()" class="confirmbtn">Add</button>
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="id02" class="modal">
+                <div class="modal-content animate">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <img src="logo.png" alt="Logo" class="logo">
+                    </div>
+                    <div class="container">
+                        <label for="editID" hidden><b>ID</b></label>
+                        <input id="editID" type="hidden" placeholder="Enter New ID">
+                        <label for="editLastName"><b>Last Name</b></label>
+                        <input id="editLastName" type="text" placeholder="Enter New Last Name">
+                        <label for="editFirstName"><b>First Name</b></label>
+                        <input id="editFirstName" type="text" placeholder="Enter New First Name">
+                        <label for="editDateOfBirth"><b>Date of Birth</b></label>
+                        <input id="editDateOfBirth" type="date" placeholder="Enter New Date of Birth">
+                        <label for="editAddress"><b>Address</b></label>
+                        <input id="editAddress" type="text" placeholder="Enter New Address">
+                        <label for="editPhoneNumber"><b>Phone Number</b></label>
+                        <input id="editPhoneNumber" type="number" placeholder="Enter New Phone Number">
+                        <label for="editInsurance"><b>Insurance</b></label>
+                        <select id="editInsurance" ></select>
+                        <label for="editInsuranceNumber"><b>Insurance Number</b></label>
+                        <input id="editInsuranceNumber" type="text" placeholder="Enter New Insurance Number">
+                        <label id="editError" style="color: #c63939;">&nbsp;</label>
+                        <div class="clearfix">
+                            <button type="button" onclick="editPatient()" class="confirmbtn">Edit</button>
+                            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="id03" class="modal">
+                <div class="modal-content animate">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <img src="logo.png" alt="Logo" class="logo">
+                    </div>
+                    <div class="container">
+                        <label for="anamnesisInsuranceNumber"><b>Insurance Number</b></label>
+                        <input id="anamnesisInsuranceNumber" type="text" placeholder="Enter Insurance Number" disabled>
+                        <label for="anamnesis"><b>Anamnesis</b></label>
+                        <textarea id="anamnesis" placeholder="Enter Anamnesis"></textarea>
+                        <label id="anamnesisError" style="color: #c63939;">&nbsp;</label>
+                        <div class="clearfix">
+                            <button type="button" onclick="addAnamnesis()" class="confirmbtn">Add</button>
+                            <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="patient.js"></script>
+    </body>
+</html>

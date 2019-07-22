@@ -2,27 +2,51 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="waitingList.css">
+        <script src="waitingList.js"></script>
         <title>Clinic Test</title>
     </head>
     <body>
-        <h1>Waiting List</h1>
-        <div id="list">
-            <table>
-                <tr>
-                    <th>Insurance Number</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>
-                        <button type="button">Queue</button>
-                    </th>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
+        <div class="hero-image">
+            <div class="topnav" id="myTopnav">
+                <a href="#" class="active">Waiting List</a>
+                <a href="#" onclick="openPatient()">Patient</a>
+                <a href="#" onclick="openReport()">Report</a>
+                <a href="#" onclick="openInsurance()">Insurance</a>
+                <a href="#" onclick="openStaff()">Staff</a>
+                <a href="#" onclick="openBackup()">Backup</a>
+                <a href="#" class="logout" onclick="logout()">Logout</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    ≡
+                </a>
+            </div>
+            <div class="container">
+                <label for="insuranceNumber"><b>Insurance Number</b></label>
+                <input id="insuranceNumber" type="text" placeholder="Enter Insurance Number">
+                <label id="error" style="color: #c63939;">&nbsp;</label>
+                <div class="clearfix">
+                    <button type="button" onclick="queuePatient()" class="confirmbtn">Queue</button>
+                </div>
+            </div>
+            <div class="main">
+                <div id="list" style="overflow: auto">
+                    <table>
+                        <tr>
+                            <th>Insurance Number</th>
+                            <th>Patient</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-        <script src="waitingList.js"></script>
     </body>
 </html>

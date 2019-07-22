@@ -58,7 +58,6 @@ public class Visit {
         this.date = date;
     }
 
-
     public String getAnamnesis() {
         return anamnesis;
     }

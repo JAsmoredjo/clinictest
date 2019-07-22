@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="backup.css">
+    <title>Clinic Test</title>
+</head>
+<body>
+<div class="hero-image">
+    <div class="topnav" id="myTopnav">
+        <a href="#" class="active">Backup</a>
+        <a href="#" onclick="openWaitingList()">Waiting List</a>
+        <a href="#" onclick="openPatient()">Patient</a>
+        <a href="#" onclick="openReport()">Report</a>
+        <a href="#" onclick="openInsurance()">Insurance</a>
+        <a href="#" onclick="openStaff()">Staff</a>
+        <a href="#" class="logout" onclick="logout()">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            ≡
+        </a>
+    </div>
+    <div class="container">
+        <div class="clearfix">
+            <form action="/clinic-test/api/backup/create" method="post">
+                <input type="submit" value="Create Backup">
+            </form>
+            <form action="/clinic-test/api/backup/restore" method="post" enctype="multipart/form-data" onclick="">
+                <label for="upload"><b>Upload</b></label>
+                <input id="upload" type="file" name="upload">
+                <input type="submit" value="Restore Backup">
+            </form>
+        </div>
+    </div>
+</div>
+<script src="backup.js"></script>
+</body>
+</html>

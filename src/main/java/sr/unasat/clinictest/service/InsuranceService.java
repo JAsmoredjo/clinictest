@@ -18,4 +18,12 @@ public class InsuranceService {
     public List<Insurance> all() {
         return insuranceDAO.all();
     }
+
+    public List<Insurance> search(Insurance insurance) {
+        return insuranceDAO.search(insurance);
+    }
+
+    public List<Insurance> register(Insurance insurance) {
+        return insuranceDAO.register(insurance);
+    }
 }

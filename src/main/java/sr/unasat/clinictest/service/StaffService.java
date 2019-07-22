@@ -18,4 +18,8 @@ public class StaffService {
     public List<Staff> all() {
         return staffDAO.all();
     }
+
+    public List<Staff> search(Staff staff) {
+        return staffDAO.search(staff);
+    }
 }

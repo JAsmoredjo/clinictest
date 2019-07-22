@@ -35,4 +35,12 @@ public class UserController {
     public User register(User user) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return userService.register(user);
     }
+
+    @Path("/remove")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public User remove(User user) {
+        return userService.remove(user);
+    }
 }

@@ -32,7 +32,7 @@ create table insurance_company (
 create table insurance (
     id int not null auto_increment,
     insurance_company_fk int not null,
-    name varchar(50) not null unique,
+    name varchar(50) not null,
     primary key (id),
     foreign key (insurance_company_fk) references insurance_company(id)
 );

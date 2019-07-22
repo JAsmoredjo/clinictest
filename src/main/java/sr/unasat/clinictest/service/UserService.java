@@ -28,4 +28,8 @@ public class UserService {
     public User register(User user) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return userDAO.register(user);
     }
+
+    public User remove(User user) {
+        return userDAO.remove(user);
+    }
 }

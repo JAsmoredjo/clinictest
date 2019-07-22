@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="report.css">
+        <title>Clinic Test</title>
+    </head>
+    <body>
+        <div class="hero-image">
+            <div class="topnav" id="myTopnav">
+                <a href="#" class="active">Report</a>
+                <a href="#" onclick="openWaitingList()">Waiting List</a>
+                <a href="#" onclick="openPatient()">Patient</a>
+                <a href="#" onclick="openInsurance()">Insurance</a>
+                <a href="#" onclick="openStaff()">Staff</a>
+                <a href="#" onclick="openBackup()">Backup</a>
+                <a href="#" class="logout" onclick="logout()">Logout</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    ≡
+                </a>
+            </div>
+            <div class="container">
+                <label><b>Report</b></label>
+                <div class="clearfix">
+                    <form action="/clinic-test/api/report/current" method="post">
+                        <input type="submit" value="Current Month">
+                    </form>
+                    <form action="/clinic-test/api/report/previous" method="post">
+                        <input type="submit" value="Previous Month">
+                    </form>
+                    <form action="/clinic-test/api/report/custom" method="post">
+                        <label for="startDate"><b>Start Date</b></label>
+                        <input id="startDate" type="date" name="startDate">
+                        <label for="endDate"><b>End Date</b></label>
+                        <input id="endDate" type="date" name="endDate">
+                        <input type="submit" value="Custom Report">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="report.js"></script>
+    </body>
+</html>

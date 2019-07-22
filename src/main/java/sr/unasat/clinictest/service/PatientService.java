@@ -5,6 +5,7 @@ import sr.unasat.clinictest.dao.PatientDAO;
 import sr.unasat.clinictest.entity.InsuranceCompany;
 import sr.unasat.clinictest.entity.Patient;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class PatientService {
@@ -36,7 +37,11 @@ public class PatientService {
         return patientDAO.update(patient);
     }
 
-    public List<Patient> report(InsuranceCompany insuranceCompany) {
-        return patientDAO.report(insuranceCompany);
+    public List<Patient> report(InsuranceCompany insuranceCompany, LocalDate date) {
+        return patientDAO.report(insuranceCompany, date);
+    }
+
+    public List<Patient> report(InsuranceCompany insuranceCompany, LocalDate startDate, LocalDate endDate) {
+        return patientDAO.report(insuranceCompany, startDate, endDate);
     }
 }

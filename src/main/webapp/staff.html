@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="patient.css">
+        <title>Clinic Test</title>
+    </head>
+    <body>
+        <div class="hero-image">
+            <div class="topnav" id="myTopnav">
+                <a href="#" class="active">Staff</a>
+                <a href="#" onclick="openWaitingList()">Waiting List</a>
+                <a href="#" onclick="openPatient()">Patient</a>
+                <a href="#" onclick="openReport()">Report</a>
+                <a href="#" onclick="openInsurance()">Insurance</a>
+                <a href="#" onclick="openBackup()">Backup</a>
+                <a href="#" class="logout" onclick="logout()">Logout</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    ≡
+                </a>
+            </div>
+            <div class="container">
+                <label for="name"><b>Last Name or First Name</b></label>
+                <input id="name" type="text" placeholder="Enter Last Name or First Name">
+                <label id="searchError" style="color: #c63939;">&nbsp;</label>
+                <div class="clearfix">
+                    <button type="button" onclick="searchStaff()" class="confirmbtn">Search</button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='block'" class="newbtn">New</button>
+                </div>
+            </div>
+            <div id="info">
+                <table>
+                    <tr>
+                        <th colspan="2">Staff</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>Job</th>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="id01" class="modal">
+                <div class="modal-content animate">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <img src="logo.png" alt="Logo" class="logo">
+                    </div>
+                    <div class="container">
+                        <label for="newLastName"><b>Last Name</b></label>
+                        <input id="newLastName" type="text" placeholder="Enter Last Name">
+                        <label for="newFirstName"><b>First Name</b></label>
+                        <input id="newFirstName" type="text" placeholder="Enter First Name">
+                        <label for="newDateOfBirth"><b>Date of Birth</b></label>
+                        <input id="newDateOfBirth" type="date" placeholder="Enter Date of Birth">
+                        <label for="newAddress"><b>Address</b></label>
+                        <input id="newAddress" type="text" placeholder="Enter Address">
+                        <label for="newPhoneNumber"><b>Phone Number</b></label>
+                        <input id="newPhoneNumber" type="number" placeholder="Enter Phone Number">
+                        <label for="newJob"><b>Job</b></label>
+                        <select id="newJob">
+                            <option value="" disabled selected>Select Job</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Doctor">Doctor</option>
+                        </select>
+                        <label for="newUsername"><b>Username</b></label>
+                        <input id="newUsername" type="text" placeholder="Enter Username">
+                        <label for="newPassword"><b>Password</b></label>
+                        <input id="newPassword" type="password" placeholder="Enter Password">
+                        <label for="newRetypePassword"><b>Retype Password</b></label>
+                        <input id="newRetypePassword" type="password" placeholder="Retype Password">
+                        <label id="newError" style="color: #c63939;">&nbsp;</label>
+                        <div class="clearfix">
+                            <button type="button" onclick="newStaff()" class="confirmbtn">Add</button>
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="id02" class="modal">
+                <div class="modal-content animate">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <img src="logo.png" alt="Logo" class="logo">
+                    </div>
+                    <div class="container">
+                        <label for="removeID" hidden><b>ID</b></label>
+                        <input id="removeID" type="hidden" placeholder="Enter Remove ID" disabled>
+                        <label for="removeLastName"><b>Last Name</b></label>
+                        <input id="removeLastName" type="text" placeholder="Enter Remove Last Name" disabled>
+                        <label for="removeFirstName"><b>First Name</b></label>
+                        <input id="removeFirstName" type="text" placeholder="Enter Remove First Name" disabled>
+                        <label id="removeError" style="color: #c63939;">&nbsp;</label>
+                        <div class="clearfix">
+                            <button type="button" onclick="removeStaff()" class="confirmbtn">Remove</button>
+                            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="staff.js"></script>
+    </body>
+</html>

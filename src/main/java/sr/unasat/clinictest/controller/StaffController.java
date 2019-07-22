@@ -4,6 +4,7 @@ import sr.unasat.clinictest.entity.Staff;
 import sr.unasat.clinictest.service.StaffService;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -18,5 +19,12 @@ public class StaffController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Staff> all() {
         return staffService.all();
+    }
+
+    @Path("/search")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Staff> search(Staff staff) {
+        return staffService.search(staff);
     }
 }
