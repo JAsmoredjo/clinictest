@@ -52,7 +52,7 @@ function getList() {
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         queueJson = JSON.parse(xmlhttp.responseText);
-                        let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th>&nbsp;</th></tr>";
+                        let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th><button type=\"button\" onclick=\"getList()\">Refresh</button></th></tr>";
                         if (queueJson.length > 0) {
                             for (let queue of queueJson) {
                                 if (queue.status == "Waiting") {
@@ -110,7 +110,7 @@ function queuePatient() {
                                 while (inQueue.length > 0) {
                                     inQueue.pop();
                                 }
-                                let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th>&nbsp;</tr>";
+                                let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th><button type=\"button\" onclick=\"getList()\">Refresh</button></tr>";
                                 if (queueJson.length > 0) {
                                     for (let queue of queueJson) {
                                         if (queue.status == "Waiting") {
@@ -215,7 +215,7 @@ function updatePriority(id, priority) {
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         queueJson = JSON.parse(xmlhttp.responseText);
-                        let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th>&nbsp;</tr>";
+                        let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th><button type=\"button\" onclick=\"getList()\">Refresh</button></tr>";
                         if (queueJson.length > 0) {
                             for (let queue of queueJson) {
                                 if (queue.status == "Waiting") {
@@ -272,7 +272,7 @@ function updateStatus(id, status) {
                         while (inQueue.length > 0) {
                             inQueue.pop();
                         }
-                        let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th>&nbsp;</tr>";
+                        let list = "<table><tr><th>Insurance Number</th><th>Patient</th><th>Priority</th><th>Status</th><th><button type=\"button\" onclick=\"getList()\">Refresh</button></tr>";
                         if (queueJson.length > 0) {
                             for (let queue of queueJson) {
                                 if (queue.status == "Waiting") {
