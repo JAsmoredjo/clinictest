@@ -18,6 +18,7 @@ create table user (
     username varchar(50) not null unique,
     password text not null,
     salt varchar(50) not null unique,
+    access varchar(50) not null unique,
     staff_fk int not null unique,
     primary key (id),
     foreign key (staff_fk) references staff(id)
@@ -79,11 +80,11 @@ values
 
 insert into user
 values
-(null, "1", "2a4faaae91fc288f73887053158a8699dbe8c34f5fa36d7162b847506cb7377a", "466e13e6101ad461359cbef495dbdb13", 1),
-(null, "2", "968269c1823bfcb95eb3561fd4668fdcef2df49b4dae8787151db299736b1466", "9cfba1e8d299cfad1ed49d732bd0cb84", 2),
-(null, "3", "2918fd70bca43ff4b665bb3fb28eed6dad060d2ed5df7b795fdb835a7e5537fc", "c2bd625025d76e048a9111991bdbfee6", 3),
-(null, "4", "4f86e21b2e8e4f32c60d371de0c40d13d94ae7d925f1f5e23f38c50994ab0c37", "259b3c12699d13852e7ca3a8ccb17da8", 4),
-(null, "5", "67077d5e16c61b1712eba08c903377b77362e61713c0437365adf26e6f01b7b9", "b8c4dcecaafe9157eb3cdf19fcec4de7", 5);
+(null, "1", "2a4faaae91fc288f73887053158a8699dbe8c34f5fa36d7162b847506cb7377a", "466e13e6101ad461359cbef495dbdb13", "466e13e6101ad461359cbef495dbdb13", 1),
+(null, "2", "968269c1823bfcb95eb3561fd4668fdcef2df49b4dae8787151db299736b1466", "9cfba1e8d299cfad1ed49d732bd0cb84", "9cfba1e8d299cfad1ed49d732bd0cb84", 2),
+(null, "3", "2918fd70bca43ff4b665bb3fb28eed6dad060d2ed5df7b795fdb835a7e5537fc", "c2bd625025d76e048a9111991bdbfee6", "c2bd625025d76e048a9111991bdbfee6", 3),
+(null, "4", "4f86e21b2e8e4f32c60d371de0c40d13d94ae7d925f1f5e23f38c50994ab0c37", "259b3c12699d13852e7ca3a8ccb17da8", "259b3c12699d13852e7ca3a8ccb17da8", 4),
+(null, "5", "67077d5e16c61b1712eba08c903377b77362e61713c0437365adf26e6f01b7b9", "b8c4dcecaafe9157eb3cdf19fcec4de7", "b8c4dcecaafe9157eb3cdf19fcec4de7", 5);
 
 insert into insurance_company
 values
