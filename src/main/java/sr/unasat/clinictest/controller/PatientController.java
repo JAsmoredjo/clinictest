@@ -12,7 +12,7 @@ public class PatientController {
     private PatientService patientService = new PatientService();
 
     @Path("/all")
-    @GET
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
     public List<Patient> all() {
         return patientService.all();

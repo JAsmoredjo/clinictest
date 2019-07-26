@@ -12,7 +12,7 @@ public class QueueController {
     private QueueService queueService = new QueueService();
 
     @Path("/all")
-    @GET
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
     public List<Queue> all() {
         return queueService.all();

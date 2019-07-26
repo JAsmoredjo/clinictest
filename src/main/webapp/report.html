@@ -12,8 +12,6 @@
                 <a href="#" onclick="openWaitingList()">Waiting List</a>
                 <a href="#" onclick="openPatient()">Patient</a>
                 <a href="#" onclick="openInsurance()">Insurance</a>
-                <a href="#" onclick="openStaff()">Staff</a>
-                <a href="#" onclick="openBackup()">Backup</a>
                 <a href="#" class="logout" onclick="logout()">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     ≡
@@ -23,16 +21,19 @@
                 <label><b>Report</b></label>
                 <div class="clearfix">
                     <form action="/clinic-test/api/report/current" method="post">
+                        <input id="accessCurrent" type="hidden" name="access">
                         <input type="submit" value="Current Month">
                     </form>
                     <form action="/clinic-test/api/report/previous" method="post">
+                        <input id="accessPrevious" type="hidden" name="access">
                         <input type="submit" value="Previous Month">
                     </form>
                     <form action="/clinic-test/api/report/custom" method="post">
+                        <input id="accessCustom" type="hidden" name="access">
                         <label for="startDate"><b>Start Date</b></label>
-                        <input id="startDate" type="date" name="startDate">
+                        <input id="startDate" type="date" name="startDate" required>
                         <label for="endDate"><b>End Date</b></label>
-                        <input id="endDate" type="date" name="endDate">
+                        <input id="endDate" type="date" name="endDate" required>
                         <input type="submit" value="Custom Report">
                     </form>
                 </div>

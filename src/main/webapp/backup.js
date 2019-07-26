@@ -32,3 +32,17 @@ function openInsurance() {
 function openStaff() {
     window.location.href = "staff.html"
 }
+
+function logout() {
+    win = window.open("", "parent");
+    if (win.location.href.indexOf("waiting-list.html") != -1) {
+        win.focus();
+        window.close();
+        win.logout();
+    } else {
+        win.location.href = "waiting-list.html";
+        win.focus();
+        window.close();
+        win.logout();
+    }
+}

@@ -32,4 +32,12 @@ public class UserService {
     public User remove(User user) {
         return userDAO.remove(user);
     }
+
+    public User verify(User user) {
+        return userDAO.verify(user);
+    }
+
+    public User logout(User user) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        return userDAO.logout(user);
+    }
 }

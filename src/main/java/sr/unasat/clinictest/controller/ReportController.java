@@ -1,6 +1,8 @@
 package sr.unasat.clinictest.controller;
 
+import sr.unasat.clinictest.entity.User;
 import sr.unasat.clinictest.service.ReportService;
+import sr.unasat.clinictest.service.UserService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,14 +19,23 @@ import java.time.LocalDate;
 
 @Path("report")
 public class ReportController {
+    private UserService userService = new UserService();
     private ReportService reportService = new ReportService();
     private static final String PATH = "C:\\Report\\";
 
     @Path("/current")
     @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response current() {
-        reportService.createVisitReport(LocalDate.now());
+    public Response current(@FormParam("access") String access) {
+        User user = new User();
+        user.setAccess(access);
+        user = userService.verify(user);
+        if (user.getId() > 0) {
+            reportService.createVisitReport(LocalDate.now());
+        } else {
+            reportService.createEmptyReport();
+        }
         Response.ResponseBuilder response = Response.ok().entity(new StreamingOutput() {
             @Override
             public void write(OutputStream outputStream) throws IOException, WebApplicationException {
@@ -53,9 +64,17 @@ public class ReportController {
 
     @Path("/previous")
     @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response previous() {
-        reportService.createVisitReport(LocalDate.now().minusMonths(1));
+    public Response previous(@FormParam("access") String access) {
+        User user = new User();
+        user.setAccess(access);
+        user = userService.verify(user);
+        if (user.getId() > 0) {
+            reportService.createVisitReport(LocalDate.now().minusMonths(1));
+        } else {
+            reportService.createEmptyReport();
+        }
         Response.ResponseBuilder response = Response.ok().entity(new StreamingOutput() {
             @Override
             public void write(OutputStream outputStream) throws IOException, WebApplicationException {
@@ -84,9 +103,17 @@ public class ReportController {
 
     @Path("/custom")
     @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response select(@FormParam("startDate") String startDate, @FormParam("endDate") String endDate) {
-        reportService.createVisitReport(LocalDate.parse(startDate), LocalDate.parse(endDate));
+    public Response select(@FormParam("access") String access, @FormParam("startDate") String startDate, @FormParam("endDate") String endDate) {
+        User user = new User();
+        user.setAccess(access);
+        user = userService.verify(user);
+        if (user.getId() > 0) {
+            reportService.createVisitReport(LocalDate.parse(startDate), LocalDate.parse(endDate));
+        } else {
+            reportService.createEmptyReport();
+        }
         Response.ResponseBuilder response = Response.ok().entity(new StreamingOutput() {
             @Override
             public void write(OutputStream outputStream) throws IOException, WebApplicationException {

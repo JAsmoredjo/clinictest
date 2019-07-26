@@ -12,7 +12,7 @@ public class InsuranceController {
     private InsuranceService insuranceService = new InsuranceService();
 
     @Path("/all")
-    @GET
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
     public List<Insurance> all() {
         return insuranceService.all();

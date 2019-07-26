@@ -19,6 +19,9 @@ public class User {
     @Column(name = "salt", nullable = false)
     private String salt;
 
+    @Column(name = "access", nullable = false)
+    private String access;
+
     @OneToOne
     @JoinColumn(name = "staff_fk", nullable = false, unique = true)
     private Staff staff;
@@ -26,11 +29,12 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String salt, Staff staff) {
+    public User(int id, String username, String password, String salt, String access, Staff staff) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.salt = salt;
+        this.access = access;
         this.staff = staff;
     }
 
@@ -64,6 +68,14 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getAccess() {
+        return access;
+    }
+
+    public void setAccess(String access) {
+        this.access = access;
     }
 
     public Staff getStaff() {

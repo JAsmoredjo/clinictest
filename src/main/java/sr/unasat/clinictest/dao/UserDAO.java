@@ -37,6 +37,11 @@ public class UserDAO {
             PBKDF2 pbkdf2 = new PBKDF2();
             if (pbkdf2.validate(user.getPassword(), userTemp.getPassword(), userTemp.getSalt())) {
                 user.setStaff(userTemp.getStaff());
+                String hash = pbkdf2.hash(String.valueOf(userTemp.getId()));
+                String[] hashSplit = hash.split(":");
+                userTemp.setAccess(userTemp.getId() + ":" + hashSplit[1]);
+                entityManager.merge(userTemp);
+                user.setAccess(userTemp.getAccess());
             } else {
                 user = new User();
             }
@@ -64,6 +69,9 @@ public class UserDAO {
             String[] hashSplit = hash.split(":");
             user.setPassword(hashSplit[0]);
             user.setSalt(hashSplit[1]);
+            hash = pbkdf2.hash(String.valueOf(user.getId()));
+            hashSplit = hash.split(":");
+            user.setAccess(hashSplit[1]);
             entityManager.persist(user.getStaff());
             entityManager.persist(user);
             entityManager.getTransaction().commit();
@@ -86,6 +94,66 @@ public class UserDAO {
             entityManager.getTransaction().commit();
             return user;
         }
+    }
 
+    public User verify(User user) {
+        String access = user.getAccess();
+        String[] accessSplit = access.split(":");
+        if (accessSplit.length == 2) {
+            try {
+                int id = Integer.parseInt(accessSplit[0]);
+                entityManager.getTransaction().begin();
+                String jpql = "select u from User u where u.id = :id and u.access = :access";
+                TypedQuery<User> userTypedQuery = entityManager.createQuery(jpql, User.class);
+                userTypedQuery.setParameter("id", id);
+                userTypedQuery.setParameter("access", access);
+                try {
+                    User userTemp = userTypedQuery.getSingleResult();
+                    entityManager.getTransaction().commit();
+                    return user;
+                } catch (NoResultException e) {
+                    entityManager.getTransaction().commit();
+                    return new User();
+                }
+            } catch (NumberFormatException e) {
+                entityManager.getTransaction().commit();
+                return new User();
+            }
+        } else {
+            return new User();
+        }
+    }
+
+    public User logout(User user) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        String access = user.getAccess();
+        String[] accessSplit = access.split(":");
+        if (accessSplit.length == 2) {
+            try {
+                int id = Integer.parseInt(accessSplit[0]);
+                entityManager.getTransaction().begin();
+                String jpql = "select u from User u where u.id = :id and u.access = :access";
+                TypedQuery<User> userTypedQuery = entityManager.createQuery(jpql, User.class);
+                userTypedQuery.setParameter("id", id);
+                userTypedQuery.setParameter("access", access);
+                try {
+                    User userTemp = userTypedQuery.getSingleResult();
+                    PBKDF2 pbkdf2 = new PBKDF2();
+                    String hash = pbkdf2.hash(String.valueOf(userTemp.getId()));
+                    String[] hashSplit = hash.split(":");
+                    userTemp.setAccess(userTemp.getId() + ":" + hashSplit[1]);
+                    entityManager.merge(userTemp);
+                    entityManager.getTransaction().commit();
+                    return user;
+                } catch (NoResultException e) {
+                    entityManager.getTransaction().commit();
+                    return new User();
+                }
+            } catch (NumberFormatException e) {
+                entityManager.getTransaction().commit();
+                return new User();
+            }
+        } else {
+            return new User();
+        }
     }
 }

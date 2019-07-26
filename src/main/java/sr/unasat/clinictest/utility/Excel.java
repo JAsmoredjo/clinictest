@@ -229,4 +229,23 @@ public class Excel {
             }
         }
     }
+
+    public void createEmptyExcel() {
+        File directory = new File(PATH);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Patient");
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(PATH + "Report.xlsx");
+            workbook.write(fileOutputStream);
+            workbook.close();
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -14,7 +14,7 @@ public class UserController {
     private UserService userService = new UserService();
 
     @Path("/all")
-    @GET
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> all() {
         return userService.all();
@@ -42,5 +42,21 @@ public class UserController {
     @Produces(MediaType.APPLICATION_JSON)
     public User remove(User user) {
         return userService.remove(user);
+    }
+
+    @Path("/verify")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public User verify(User user) {
+        return userService.verify(user);
+    }
+
+    @Path("/logout")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public User logout(User user) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        return userService.logout(user);
     }
 }

@@ -37,4 +37,25 @@ public class Zip {
             ex.printStackTrace();
         }
     }
+
+    public void createEmptyZip() {
+        try{
+            FileOutputStream fos = new FileOutputStream(PATH + "Report.zip");
+            ZipOutputStream zos = new ZipOutputStream(fos);
+            FileInputStream fis = new FileInputStream(PATH + "Report.xlsx");
+            ZipEntry ze = new ZipEntry("Report.xlsx");
+            zos.putNextEntry(ze);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer)) > 0) {
+                zos.write(buffer, 0, length);
+            }
+            fis.close();
+            zos.close();
+            fos.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
 }

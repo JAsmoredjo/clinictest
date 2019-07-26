@@ -11,16 +11,19 @@ public class UserDTO {
 
     private String salt;
 
+    private String access;
+
     private Staff staff;
 
     public UserDTO() {
     }
 
-    public UserDTO(int id, String username, String password, String salt, Staff staff) {
+    public UserDTO(int id, String username, String password, String salt, String access, Staff staff) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.salt = salt;
+        this.access = access;
         this.staff = staff;
     }
 
@@ -54,6 +57,14 @@ public class UserDTO {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getAccess() {
+        return access;
+    }
+
+    public void setAccess(String access) {
+        this.access = access;
     }
 
     public Staff getStaff() {

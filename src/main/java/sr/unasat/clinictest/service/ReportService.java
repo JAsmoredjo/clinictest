@@ -25,4 +25,9 @@ public class ReportService {
         excel.createVisitExcel(startDate, endDate);
         zip.createReportZip();
     }
+
+    public void createEmptyReport() {
+        excel.createEmptyExcel();
+        zip.createEmptyZip();
+    }
 }

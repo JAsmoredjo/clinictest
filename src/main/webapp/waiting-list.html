@@ -13,8 +13,6 @@
                 <a href="#" onclick="openPatient()">Patient</a>
                 <a href="#" onclick="openReport()">Report</a>
                 <a href="#" onclick="openInsurance()">Insurance</a>
-                <a href="#" onclick="openStaff()">Staff</a>
-                <a href="#" onclick="openBackup()">Backup</a>
                 <a href="#" class="logout" onclick="logout()">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     ≡
@@ -23,7 +21,7 @@
             <div class="container">
                 <label for="insuranceNumber"><b>Insurance Number</b></label>
                 <input id="insuranceNumber" type="text" placeholder="Enter Insurance Number">
-                <label id="error" style="color: #c63939;">&nbsp;</label>
+                <label id="queueError" style="color: #c63939;">&nbsp;</label>
                 <div class="clearfix">
                     <button type="button" onclick="queuePatient()" class="confirmbtn">Queue</button>
                 </div>
@@ -45,6 +43,25 @@
                             <td>&nbsp;</td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div id="id01" class="modal">
+                <div class="modal-content">
+                    <div class="imgcontainer">
+                        <img src="logo.png" alt="Logo" class="logo">
+                        <h2 style="text-align:center">Polikliniek</h2>
+                        <h2 style="text-align:center">A. J. Mansaram</h2>
+                    </div>
+                    <div class="container">
+                        <label for="username"><b>Username</b></label>
+                        <input id="username" type="text" placeholder="Enter Username">
+                        <label for="password"><b>Password</b></label>
+                        <input id="password" type="password" placeholder="Enter Pasword">
+                        <label id="loginError" style="color: #c63939;">&nbsp;</label>
+                        <div class="clearfix">
+                            <button type="button" onclick="login()" class="confirmbtn">Login</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
